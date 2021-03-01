@@ -1,3 +1,7 @@
+<div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center bg-dark" >
+    <h1 class="display-4 font-italic text-white">Cocktails</h1>
+</div>
+<hr>
 <div class="container">
     <div class="container-fluid">
         <!-- <div class="row"> -->
@@ -11,13 +15,13 @@
             <table class="table table-striped table-hover" *ngIf="(cocktails | filter: filterText).length > 0; else noResults">
                 <thead class="thead-light">
                     <tr>
-                        <th style="width: 35%" class="text-center">Image</th>
+                        <th style="width: 20%" class="text-center">Image</th>
                         <th style="width: 15%; cursor:pointer;" (click)="sort('strDrink')">
                             <div class="row">
                                 <div class="col-4">
                                     Name
                                 </div>
-                                <div class="col-3" *ngIf="sortCol == 'strDrink'">
+                                <div class="offset-1 col-3" *ngIf="sortCol == 'strDrink'">
                                     <div *ngIf="!sortOrder">
                                         <i class="fas fa-sort-alpha-up-alt" aria-hidden="true"></i>
                                     </div>
@@ -42,14 +46,14 @@
                                 </div>
                             </div>
                         </th>
-                        <th style="width: 35%">Ingredients</th>
+                        <th style="width: 50%">Ingredients</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let cocktail of cocktails | filter: filterText; let i = index">
                         <td>
                             <div class="text-center">
-                                <img [src]="cocktail.strDrinkThumb" style="width:20%; height:30%" class="rounded" alt="{{cocktail.strDrink}}">
+                                <img [src]="cocktail.strDrinkThumb" style="width:50%;" class="rounded" alt="{{cocktail.strDrink}}">
                             </div>
                         </td>
                         <td>{{cocktail.strDrink}}</td>

@@ -11,7 +11,7 @@ export class FilterPipe implements PipeTransform {
     
     return items.filter(item => {
       return ['strCategory', 'strDrink', 'ingredients'].some(key => {
-        return String(item[key]).toLowerCase().includes(filterText.toLowerCase());
+        return (item[key]).toLowerCase().includes(filterText.toLowerCase());
       });
     });
    }

@@ -8,17 +8,45 @@
             </div>
         <!-- </div> -->
         <div class="row">
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover" *ngIf="(cocktails | filter: filterText).length > 0; else noResults">
                 <thead class="thead-light">
                     <tr>
                         <th style="width: 35%" class="text-center">Image</th>
-                        <th style="width: 15%">Name</th>
-                        <th style="width: 15%">Category</th>
+                        <th style="width: 15%; cursor:pointer;" (click)="sort('strDrink')">
+                            <div class="row">
+                                <div class="col-4">
+                                    Name
+                                </div>
+                                <div class="col-3" *ngIf="sortCol == 'strDrink'">
+                                    <div *ngIf="!sortOrder">
+                                        <i class="fas fa-sort-alpha-up-alt" aria-hidden="true"></i>
+                                    </div>
+                                    <div *ngIf="sortOrder">
+                                        <i class="fas fa-sort-alpha-down" aria-hidden="true" *ngIf="sortOrder"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </th>
+                        <th style="width: 15%; cursor:pointer;" (click)="sort('strCategory')">
+                            <div class="row">
+                                <div class="col-6">
+                                    Category
+                                </div>
+                                <div class="col-3" *ngIf="sortCol == 'strCategory'">
+                                    <div *ngIf="sortOrder">
+                                        <i class="fas fa-sort-alpha-down" aria-hidden="true"></i>
+                                    </div>
+                                    <div *ngIf="!sortOrder">
+                                        <i class="fas fa-sort-alpha-up-alt" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </th>
                         <th style="width: 35%">Ingredients</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let cocktail of cocktails">
+                    <tr *ngFor="let cocktail of cocktails | filter: filterText; let i = index">
                         <td>
                             <div class="text-center">
                                 <img [src]="cocktail.strDrinkThumb" style="width:20%; height:30%" class="rounded" alt="{{cocktail.strDrink}}">
@@ -26,10 +54,14 @@
                         </td>
                         <td>{{cocktail.strDrink}}</td>
                         <td>{{cocktail.strCategory}}</td>
-                        <td>{{cocktail.strIngredient1}}, {{cocktail.strIngredient2}}</td>
+                        <td>{{cocktail.ingredients}}</td>
                     </tr>
                 </tbody>
             </table>
+
+            <ng-template #noResults>
+                <p>No results found for "{{filterText}}".</p>
+            </ng-template>
         </div>
     </div>
 </div>

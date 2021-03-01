@@ -6,16 +6,20 @@ import { AppComponent } from './app.component';
 import { CocktailListComponent } from './modules/cocktail-list/cocktail-list.component';
 import { CocktailListService } from './modules/cocktail-list/services/cocktail-list.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FilterPipe } from './common/filter.pipe';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CocktailListComponent
+    CocktailListComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     CocktailListService
